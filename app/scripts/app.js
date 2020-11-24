@@ -69,6 +69,7 @@ DiceGame.prototype.start = function(){
 class Player{
     constructor(){
         this.dice_field
+        console.log("oh");
     }
 }
 
