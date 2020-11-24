@@ -1,3 +1,7 @@
 body {
     font-family: 'Texturina', serif;
 }
+
+.field {
+    display: None;
+}

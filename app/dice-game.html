@@ -10,40 +10,55 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
     <body>
-        <p>Player</p>
-        <div id="p1">
-            <div class="dice_field">
-                <div class="dice_pair_1">
-                    <img src="images/1_dot_dice.png" alt="dice value">
-                    <p>value: <span class="dice"></span></p>
-                </div>
-                <div class="dice_pair_2">
-                    <img src="images/1_dot_dice.png" alt="dice value">
-                    <p>value: <span class="dice"></span></p>
-                </div>
+
+        <div class="prompt">
+            <div id="choices">
+                <button type="button" disabled>1 Player</button>
+                <button type="button">2 Players</button>
+                <button type="button" disabled>3 Players</button>
+                <button type="button" disabled>4 Players</button>
+                <button type="button" disabled>5 Players</button>
+                <button type="button" disabled>6 Players</button>
             </div>
         </div>
 
-        <p>Computer</p>
-        <div id="p2">
-            <div class="dice_field">
-                <div class="dice_pair_1">
-                    <img src="images/1_dot_dice.png" alt="dice value">
-                    <p>value: <span class="dice"></span></p>
-                </div>
-                <div class="dice_pair_2">
-                    <img src="images/1_dot_dice.png" alt="dice value">
-                    <p>value: <span class="dice"></span></p>
+        <div class="field">
+            <p>Player</p>
+            <div id="p1">
+                <div class="dice_field">
+                    <div class="dice_pair_1">
+                        <img src="images/1_dot_dice.png" alt="dice value">
+                        <p>value: <span class="dice"></span></p>
+                    </div>
+                    <div class="dice_pair_2">
+                        <img src="images/1_dot_dice.png" alt="dice value">
+                        <p>value: <span class="dice"></span></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <button id="roll_dice">Roll</button>
+            <p>Computer</p>
+            <div id="p2">
+                <div class="dice_field">
+                    <div class="dice_pair_1">
+                        <img src="images/1_dot_dice.png" alt="dice value">
+                        <p>value: <span class="dice"></span></p>
+                    </div>
+                    <div class="dice_pair_2">
+                        <img src="images/1_dot_dice.png" alt="dice value">
+                        <p>value: <span class="dice"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <button id="roll_dice">Roll</button>
+        </div>
 
         <!-- scripts -->
         <script src="scripts/jquery/jquery-3.4.1.min.js"></script>
-        <script src="scripts/app.js"></script>
+        <script src="scripts/dice_game.js"></script>
         <script src="scripts/dice.js"></script>
         <script src="scripts/player.js"></script>
+        <script src="scripts/app.js"></script>
     </body>
 </html>
