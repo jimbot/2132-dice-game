@@ -19,9 +19,12 @@ const computer_die_one_image = $('div#player div.dice_pair_one span');
 const computer_die_two_image = $('div#player div.dice_pair_two span');
 computer_image_pair = [computer_die_one_image, computer_die_two_image];
 
+let dice_game = null; // probably a better way to do this...
+
 const image_directory = "images";
 
 const selected_number_players = document.getElementById("choices");
+const roll_dice_button = document.getElementById("roll_dice");
 
 selected_number_players.addEventListener("click", (event) => {
     const is_button = event.target.nodeName === 'BUTTON';
@@ -33,5 +36,9 @@ selected_number_players.addEventListener("click", (event) => {
 })
 
 function start_game(number_players) {
-    const dice_game = new DiceGame(number_players);
+    dice_game = new DiceGame(number_players);
 }
+
+roll_dice_button.addEventListener("click", (event) => {
+    dice_game.roll_player_dice();
+})

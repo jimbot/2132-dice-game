@@ -1,4 +1,5 @@
-class Player{
-    constructor(){
+class Player {
+    constructor(name){
+        this.name = name;
     }
 }
