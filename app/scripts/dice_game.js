@@ -6,6 +6,9 @@ class DiceGame {
         this.players_dices = {};
         this.initialize_players_dices();
         this.enable_playing_field();
+
+        this.dice_animation_handler;
+        this.rolling_dice;
     }
 
     initialize_players(num_players) {
@@ -61,11 +64,11 @@ class DiceGame {
                 <div class=${name}>
                     <p>${player} - ${name}</p>
                     <div>
-                        <img class=${img_1}>
+                        <img class=${img_1} src="images/1_dot_dice.png">
                         <p>Value: <span class=${dice_1}></span></p>
                     </div>
                     <div>
-                        <img class=${img_2}>
+                        <img class=${img_2} src="images/1_dot_dice.png">
                         <p>Value: <span class=${dice_2}></span></p>
                     </div>
                 </div>
@@ -75,27 +78,26 @@ class DiceGame {
 
     roll_player_dice() {
         /* Roll each players dice and update the field. */
-        const number_rolls = 20;
-
-        const random_dice_value = Math.floor((Math.random() * 6) + 1);
-        
         for(var i=0; i<this.players_array.length; i++) {
+            const dice_1_val = Math.floor((Math.random() * 6) + 1);
+            const dice_2_val = Math.floor((Math.random() * 6) + 1);
             const name = `${this.players_array[i].name}`;
-            this.update_dice_field(name, random_dice_value);
+            this.update_dice_field(name, dice_1_val, dice_2_val);
         }
-        
     }
 
-    update_dice_field(player_name, dice_value) {
+    update_dice_field(player_name, dice_1_val, dice_2_val) {
         /* Update the value and images of 1 players hand. */
-        const img_source = this.dice.map[dice_value]['source'];
+        const dice_img_1 = this.dice.map[dice_1_val]['source'];
+        const dice_img_2 = this.dice.map[dice_2_val]['source'];
         const dice_1 = this.players_dices[player_name]['dice_1'];
         const dice_2 = this.players_dices[player_name]['dice_2'];
         const img_1 = this.players_dices[player_name]['img_1'];
         const img_2 = this.players_dices[player_name]['img_2'];
-        $(`span.${dice_1}`).text(dice_value);
-        $(`span.${dice_2}`).text(dice_value);
-        $(`img.${img_1}`).attr("src", `images/${img_source}`);
-        $(`img.${img_2}`).attr("src", `images/${img_source}`);
+        $(`span.${dice_1}`).text(dice_1_val);
+        $(`span.${dice_2}`).text(dice_2_val);
+        $(`img.${img_1}`).attr("src", `images/${dice_img_1}`);
+        $(`img.${img_2}`).attr("src", `images/${dice_img_2}`);
     }
+
 }
