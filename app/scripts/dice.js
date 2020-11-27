@@ -1,6 +1,6 @@
 class Dice {
     constructor(){
-        this.dice_map = {
+        this.map = {
             1: {"value": 1, "source": "1_dot_dice.png"},
             2: {"value": 2, "source": "2_dot_dice.png"},
             3: {"value": 3, "source": "3_dot_dice.png"},

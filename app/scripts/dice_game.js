@@ -3,8 +3,8 @@ class DiceGame {
         this.dice = new Dice();
         this.number_players = number_players;
         this.players_array = this.initialize_players(this.number_players);
-        console.log(this.players_array);
         this.players_dices = {};
+        this.initialize_players_dices();
         this.enable_playing_field();
     }
 
@@ -28,7 +28,13 @@ class DiceGame {
 
     initialize_players_dices() {
         for(var i=0; i<this.players_array.length; i++){
-            this.players_dices[this.players_array[i].name] = {}
+            const player_name = this.players_array[i].name;
+            this.players_dices[player_name] = {
+                'dice_1':`${player_name}_dice_1`,
+                'dice_2':`${player_name}_dice_2`,
+                'img_1':`${player_name}_img_1`,
+                'img_2':`${player_name}_img_2`,
+            }
         }
     }
 
@@ -43,7 +49,7 @@ class DiceGame {
         const field = $('div.field');
         field.css("display", "inline-block");
 
-        for(var i=0; i<this.players_array.length; i++){
+        for(var i=0; i<this.players_array.length; i++) {
             const player = `player ${i+1}`; // we don't want 'player 0'
             const name = `${this.players_array[i].name}`;
             const dice_1 = `${name}_dice_1`;
@@ -69,10 +75,27 @@ class DiceGame {
 
     roll_player_dice() {
         /* Roll each players dice and update the field. */
-        this.update_dice_field();
+        const number_rolls = 20;
+
+        const random_dice_value = Math.floor((Math.random() * 6) + 1);
+        
+        for(var i=0; i<this.players_array.length; i++) {
+            const name = `${this.players_array[i].name}`;
+            this.update_dice_field(name, random_dice_value);
+        }
+        
     }
 
-    update_dice_field() {
-        /* Update the value and images. */
+    update_dice_field(player_name, dice_value) {
+        /* Update the value and images of 1 players hand. */
+        const img_source = this.dice.map[dice_value]['source'];
+        const dice_1 = this.players_dices[player_name]['dice_1'];
+        const dice_2 = this.players_dices[player_name]['dice_2'];
+        const img_1 = this.players_dices[player_name]['img_1'];
+        const img_2 = this.players_dices[player_name]['img_2'];
+        $(`span.${dice_1}`).text(dice_value);
+        $(`span.${dice_2}`).text(dice_value);
+        $(`img.${img_1}`).attr("src", `images/${img_source}`);
+        $(`img.${img_2}`).attr("src", `images/${img_source}`);
     }
 }
