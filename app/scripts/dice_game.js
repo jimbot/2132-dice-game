@@ -97,6 +97,32 @@ class DiceGame {
         this.handle_current_round_scores();
     }
 
+    update_dice_field(player) {
+        /* Update the value and images of 1 players hand. */
+        let round_score;
+        const dice_img_1 = this.dice.map[player.dice_1_val]['source'];
+        const dice_img_2 = this.dice.map[player.dice_2_val]['source'];
+        const dice_1 = player.dice_1;
+        const dice_2 = player.dice_2;
+        const img_1 = player.img_1;
+        const img_2 = player.img_2;
+
+        if (player.dice_1_val == 1 || player.dice_2_val == 1) {
+            round_score = 0;
+        } else {
+            round_score = player.dice_1_val + player.dice_2_val;
+        }
+        player.total_score += round_score;
+
+        $(`span.${dice_1}`).text(player.dice_1_val);
+        $(`span.${dice_2}`).text(player.dice_2_val);
+        $(`img.${img_1}`).attr("src", `images/${dice_img_1}`);
+        $(`img.${img_2}`).attr("src", `images/${dice_img_2}`);
+
+        $(`div.${player.name} span.round`).text(round_score);
+        $(`div.${player.name} span.total`).text(player.total_score);
+    }
+
     handle_current_round_scores() {
         /* Update the round and check if the game should end. */
         this.current_round += 1;
@@ -135,26 +161,5 @@ class DiceGame {
         }
         $(`div#round`).text(winner_text);
         this.game_over = true;
-    }
-
-    update_dice_field(player) {
-        /* Update the value and images of 1 players hand. */
-        const dice_img_1 = this.dice.map[player.dice_1_val]['source'];
-        const dice_img_2 = this.dice.map[player.dice_2_val]['source'];
-        const dice_1 = player.dice_1;
-        const dice_2 = player.dice_2;
-        const img_1 = player.img_1;
-        const img_2 = player.img_2;
-
-        const round_score = player.dice_1_val + player.dice_2_val;
-        player.total_score += round_score;
-
-        $(`span.${dice_1}`).text(player.dice_1_val);
-        $(`span.${dice_2}`).text(player.dice_2_val);
-        $(`img.${img_1}`).attr("src", `images/${dice_img_1}`);
-        $(`img.${img_2}`).attr("src", `images/${dice_img_2}`);
-
-        $(`div.${player.name} span.round`).text(round_score);
-        $(`div.${player.name} span.total`).text(player.total_score);
     }
 }
