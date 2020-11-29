@@ -1,3 +1,7 @@
+/**
+ * Maps dice values to their image path.
+ */
+
 class Dice {
     constructor(){
         this.map = {

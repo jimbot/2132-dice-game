@@ -1,3 +1,7 @@
+/**
+ * This class keeps stats for the player object.
+ */
+
 class Player {
     constructor(name){
         this.name = name;

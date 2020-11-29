@@ -1,3 +1,7 @@
+/**
+ * Starting point of the game.
+ */
+
 const selected_number_players = document.getElementById("choices");
 const roll_dice_button = document.getElementById("roll_dice");
 const new_game = document.getElementById("new_game");
