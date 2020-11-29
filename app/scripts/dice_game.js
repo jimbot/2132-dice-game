@@ -1,3 +1,8 @@
+/**
+ * This class is responsible for tracking and updating the game state,
+ * ie. the current round and the players.
+ */
+
 class DiceGame {
     constructor(number_players) {
         this.dice = new Dice();
@@ -141,5 +146,4 @@ class DiceGame {
         $(`div.${player.name} span.round`).text(round_score);
         $(`div.${player.name} span.total`).text(player.total_score);
     }
-
 }
