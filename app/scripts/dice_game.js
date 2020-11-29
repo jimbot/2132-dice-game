@@ -4,10 +4,9 @@ class DiceGame {
         this.number_players = number_players;
         this.players_array = this.initialize_players(this.number_players);
         this.players_dices = {};
+        this.current_round = 0;
         this.initialize_players_dices();
         this.enable_playing_field();
-
-        this.currentIteration = 0;
     }
 
     initialize_players(num_players) {
@@ -52,6 +51,15 @@ class DiceGame {
         const field = $('div.field');
         field.css("display", "inline-block");
 
+        // add the round to the top
+        field.append(`
+            <div id="round">
+                <p>
+                    Round: <span>${this.current_round}</span>
+                </p>
+            </div>
+        `);
+
         for(var i=0; i<this.players_array.length; i++) {
             const player = `player ${i+1}`; // we don't want 'player 0'
             const name = `${this.players_array[i].name}`;
@@ -76,7 +84,7 @@ class DiceGame {
                         <p>Total: <span class="total"></span></p>
                     </div>
                 </div>
-            `)
+            `);
         }
     }
 
@@ -88,6 +96,35 @@ class DiceGame {
             const name = `${this.players_array[i].name}`;
             this.update_dice_field(name, dice_1_val, dice_2_val);
         }
+        this.handle_current_round_scores();
+    }
+
+    handle_current_round_scores() {
+        /* Update the round and check if the game should end. */
+        this.current_round += 1;
+        $(`div#round span`).text(this.current_round);
+        if (this.current_round == 3) {
+            this.declare_winner();
+        }
+    }
+
+    declare_winner() {
+        /* Get the highest score of all players and declare the winner. */
+        let player_with_highest_score;
+        let highest_score = 0;
+
+        for(var i=0; i<this.players_array.length; i++) {
+            const player_name = this.players_array[i].name;
+            const player_score = this.players_dices[player_name]['total_score'];
+            if (player_score > highest_score) {
+                player_with_highest_score = player_name;
+                highest_score = player_score;
+            }
+        }
+
+        const winner = `${player_with_highest_score} wins! With total score of: ${highest_score}.`;
+
+        console.log(winner);
     }
 
     update_dice_field(player_name, dice_1_val, dice_2_val) {
