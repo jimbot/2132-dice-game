@@ -1,10 +1,11 @@
 class DiceGame {
     constructor(number_players) {
         this.dice = new Dice();
+        this.game_over = false;
+        this.current_round = 0;
         this.number_players = number_players;
         this.players_array = this.initialize_players(this.number_players);
         this.players_dices = {};
-        this.current_round = 0;
         this.initialize_players_dices();
         this.enable_playing_field();
     }
@@ -125,6 +126,8 @@ class DiceGame {
         const winner = `${player_with_highest_score} wins! With total score of: ${highest_score}.`;
 
         console.log(winner);
+
+        this.game_over = true;
     }
 
     update_dice_field(player_name, dice_1_val, dice_2_val) {

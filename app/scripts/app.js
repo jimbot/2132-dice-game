@@ -25,6 +25,7 @@ const image_directory = "images";
 
 const selected_number_players = document.getElementById("choices");
 const roll_dice_button = document.getElementById("roll_dice");
+const new_game = document.getElementById("new_game");
 
 selected_number_players.addEventListener("click", (event) => {
     const is_button = event.target.nodeName === 'BUTTON';
@@ -40,5 +41,13 @@ function start_game(number_players) {
 }
 
 roll_dice_button.addEventListener("click", (event) => {
-    dice_game.roll_player_dice();
+    if (!dice_game.game_over) {
+        dice_game.roll_player_dice();
+    } else {
+        roll_dice_button.disabled = true;
+    }
+})
+
+new_game.addEventListener("click", (event) => {
+    location.reload();
 })
