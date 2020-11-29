@@ -109,7 +109,10 @@ class DiceGame {
 
         if (player.dice_1_val == 1 || player.dice_2_val == 1) {
             round_score = 0;
-        } else {
+        } else if (player.dice_1_val == player.dice_2_val) {
+            round_score = (player.dice_1_val + player.dice_2_val) * 2;
+        }
+        else {
             round_score = player.dice_1_val + player.dice_2_val;
         }
         player.total_score += round_score;
