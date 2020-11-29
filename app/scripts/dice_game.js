@@ -108,21 +108,32 @@ class DiceGame {
 
     declare_winner() {
         /* Get the highest score of all players and declare the winner. */
+        let winner_text;
+        let players_tied = [];
         let player_with_highest_score;
         let highest_score = 0;
 
         for(var i=0; i<this.players_array.length; i++) {
             const player = this.players_array[i];
             const player_score = player.total_score;
+            if (player_score == highest_score) {
+                players_tied.push(player_with_highest_score);
+                players_tied.push(player.name);
+            }
+
             if (player_score > highest_score) {
                 player_with_highest_score = player.name;
                 highest_score = player_score;
+                players_tied = []; // clear the players tied array
             }
         }
 
-        const winner = `${player_with_highest_score} wins! With total score of: ${highest_score}.`;
-
-        $(`div#round`).text(winner);
+        if (players_tied.length) {
+            winner_text = `${players_tied.length} way tie! Congratulations: {${players_tied}} with score ${highest_score}.`
+        } else {
+            winner_text = `${player_with_highest_score} wins! With total score of: ${highest_score}.`;
+        }
+        $(`div#round`).text(winner_text);
         this.game_over = true;
     }
 
