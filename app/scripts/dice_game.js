@@ -125,8 +125,7 @@ class DiceGame {
 
         const winner = `${player_with_highest_score} wins! With total score of: ${highest_score}.`;
 
-        console.log(winner);
-
+        $(`div#round`).text(winner);
         this.game_over = true;
     }
 
