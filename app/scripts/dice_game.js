@@ -5,7 +5,6 @@ class DiceGame {
         this.current_round = 0;
         this.number_players = number_players;
         this.players_array = this.initialize_players(this.number_players);
-        this.players_dices = {};
         this.initialize_players_dices();
         this.enable_playing_field();
     }
@@ -31,13 +30,6 @@ class DiceGame {
     initialize_players_dices() {
         for(var i=0; i<this.players_array.length; i++){
             const player_name = this.players_array[i].name;
-            this.players_dices[player_name] = {
-                'dice_1':`${player_name}_dice_1`,
-                'dice_2':`${player_name}_dice_2`,
-                'img_1':`${player_name}_img_1`,
-                'img_2':`${player_name}_img_2`,
-                'total_score':0
-            }
         }
     }
 
@@ -92,10 +84,10 @@ class DiceGame {
     roll_player_dice() {
         /* Roll each players dice and update the field. */
         for(var i=0; i<this.players_array.length; i++) {
-            const dice_1_val = Math.floor((Math.random() * 6) + 1);
-            const dice_2_val = Math.floor((Math.random() * 6) + 1);
-            const name = `${this.players_array[i].name}`;
-            this.update_dice_field(name, dice_1_val, dice_2_val);
+            const player = this.players_array[i];
+            player.dice_1_val = Math.floor((Math.random() * 6) + 1);
+            player.dice_2_val = Math.floor((Math.random() * 6) + 1);
+            this.update_dice_field(player);
         }
         this.handle_current_round_scores();
     }
@@ -115,10 +107,10 @@ class DiceGame {
         let highest_score = 0;
 
         for(var i=0; i<this.players_array.length; i++) {
-            const player_name = this.players_array[i].name;
-            const player_score = this.players_dices[player_name]['total_score'];
+            const player = this.players_array[i];
+            const player_score = player.total_score;
             if (player_score > highest_score) {
-                player_with_highest_score = player_name;
+                player_with_highest_score = player.name;
                 highest_score = player_score;
             }
         }
@@ -129,26 +121,25 @@ class DiceGame {
         this.game_over = true;
     }
 
-    update_dice_field(player_name, dice_1_val, dice_2_val) {
+    update_dice_field(player) {
         /* Update the value and images of 1 players hand. */
-        const dice_img_1 = this.dice.map[dice_1_val]['source'];
-        const dice_img_2 = this.dice.map[dice_2_val]['source'];
-        const dice_1 = this.players_dices[player_name]['dice_1'];
-        const dice_2 = this.players_dices[player_name]['dice_2'];
-        const img_1 = this.players_dices[player_name]['img_1'];
-        const img_2 = this.players_dices[player_name]['img_2'];
+        const dice_img_1 = this.dice.map[player.dice_1_val]['source'];
+        const dice_img_2 = this.dice.map[player.dice_2_val]['source'];
+        const dice_1 = player.dice_1;
+        const dice_2 = player.dice_2;
+        const img_1 = player.img_1;
+        const img_2 = player.img_2;
 
-        const round_score = dice_1_val + dice_2_val;
-        this.players_dices[player_name]['total_score'] += round_score;
-        const total_score = this.players_dices[player_name]['total_score'];
+        const round_score = player.dice_1_val + player.dice_2_val;
+        player.total_score += round_score;
 
-        $(`span.${dice_1}`).text(dice_1_val);
-        $(`span.${dice_2}`).text(dice_2_val);
+        $(`span.${dice_1}`).text(player.dice_1_val);
+        $(`span.${dice_2}`).text(player.dice_2_val);
         $(`img.${img_1}`).attr("src", `images/${dice_img_1}`);
         $(`img.${img_2}`).attr("src", `images/${dice_img_2}`);
 
-        $(`div.${player_name} span.round`).text(round_score);
-        $(`div.${player_name} span.total`).text(total_score);
+        $(`div.${player.name} span.round`).text(round_score);
+        $(`div.${player.name} span.total`).text(player.total_score);
     }
 
 }
