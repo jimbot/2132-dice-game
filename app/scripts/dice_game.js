@@ -7,8 +7,7 @@ class DiceGame {
         this.initialize_players_dices();
         this.enable_playing_field();
 
-        this.dice_animation_handler;
-        this.rolling_dice;
+        this.currentIteration = 0;
     }
 
     initialize_players(num_players) {
@@ -37,6 +36,7 @@ class DiceGame {
                 'dice_2':`${player_name}_dice_2`,
                 'img_1':`${player_name}_img_1`,
                 'img_2':`${player_name}_img_2`,
+                'total_score':0
             }
         }
     }
@@ -71,6 +71,10 @@ class DiceGame {
                         <img class=${img_2} src="images/1_dot_dice.png">
                         <p>Value: <span class=${dice_2}></span></p>
                     </div>
+                    <div class="score">
+                        <p>Round: <span class="round"></span></p>
+                        <p>Total: <span class="total"></span></p>
+                    </div>
                 </div>
             `)
         }
@@ -94,10 +98,18 @@ class DiceGame {
         const dice_2 = this.players_dices[player_name]['dice_2'];
         const img_1 = this.players_dices[player_name]['img_1'];
         const img_2 = this.players_dices[player_name]['img_2'];
+
+        const round_score = dice_1_val + dice_2_val;
+        this.players_dices[player_name]['total_score'] += round_score;
+        const total_score = this.players_dices[player_name]['total_score'];
+
         $(`span.${dice_1}`).text(dice_1_val);
         $(`span.${dice_2}`).text(dice_2_val);
         $(`img.${img_1}`).attr("src", `images/${dice_img_1}`);
         $(`img.${img_2}`).attr("src", `images/${dice_img_2}`);
+
+        $(`div.${player_name} span.round`).text(round_score);
+        $(`div.${player_name} span.total`).text(total_score);
     }
 
 }
