@@ -11,7 +11,6 @@ class DiceGame {
         this.players_array = [];
         this.number_players = number_players;
         this.initialize_players(this.number_players);
-        this.initialize_players_dices();
         this.enable_playing_field();
     }
 
@@ -33,13 +32,8 @@ class DiceGame {
         return random_name;
     }
 
-    initialize_players_dices() {
-        for(var i=0; i<this.players_array.length; i++){
-            const player_name = this.players_array[i].name;
-        }
-    }
-
     enable_playing_field() {
+        /* Hide and show certain content to display proper playing field. */
         $("div.prompt").css("display", "none");
         $("div.button").css("display", "flex");
         this.create_dynamic_playing_field();
@@ -50,7 +44,6 @@ class DiceGame {
         const field = $('div.field');
         const container = $('div.container');
 
-        // add the round to the top
         container.append(`
             <div id="round">
                 <p>
@@ -106,19 +99,24 @@ class DiceGame {
             player.dice_2_val = Math.floor((Math.random() * 6) + 1);
             this.update_dice_field(player);
         }
-        this.handle_current_round_scores();
+        this.evaluate_end_of_round();
     }
 
     update_dice_field(player) {
         /* Update the value and images of 1 players hand. */
-        let round_score;
         const dice_img_1 = this.dice.map[player.dice_1_val]['source'];
         const dice_img_2 = this.dice.map[player.dice_2_val]['source'];
-        const dice_1 = player.dice_1;
-        const dice_2 = player.dice_2;
-        const img_1 = player.img_1;
-        const img_2 = player.img_2;
+        const round_score = this.calculate_round_score(player)
+        $(`span.${player.dice_1}`).text(player.dice_1_val);
+        $(`span.${player.dice_2}`).text(player.dice_2_val);
+        $(`img.${player.img_1}`).attr("src", `images/${dice_img_1}`);
+        $(`img.${player.img_2}`).attr("src", `images/${dice_img_2}`);
+        $(`div.${player.name} span.round`).text(round_score);
+        $(`div.${player.name} span.total`).text(player.total_score);
+    }
 
+    calculate_round_score(player) {
+        let round_score;
         if (player.dice_1_val == 1 || player.dice_2_val == 1) {
             round_score = 0;
         } else if (player.dice_1_val == player.dice_2_val) {
@@ -128,18 +126,11 @@ class DiceGame {
             round_score = player.dice_1_val + player.dice_2_val;
         }
         player.total_score += round_score;
-
-        $(`span.${dice_1}`).text(player.dice_1_val);
-        $(`span.${dice_2}`).text(player.dice_2_val);
-        $(`img.${img_1}`).attr("src", `images/${dice_img_1}`);
-        $(`img.${img_2}`).attr("src", `images/${dice_img_2}`);
-
-        $(`div.${player.name} span.round`).text(round_score);
-        $(`div.${player.name} span.total`).text(player.total_score);
+        return round_score;
     }
 
-    handle_current_round_scores() {
-        /* Update the round and check if the game should end. */
+    evaluate_end_of_round() {
+        /* Handle end of round and determine if winner should be announced. */
         this.current_round += 1;
         $(`div#round span`).text(this.current_round);
         if (this.current_round == 3) {
@@ -149,6 +140,17 @@ class DiceGame {
 
     declare_winner() {
         /* Get the highest score of all players and declare the winner. */
+        const winning_text = this.get_players_with_highest_score()
+        this.show_popup_box_declaring_winner(winning_text)
+        $(`div#round`).text(winning_text);
+        this.game_over = true;
+    }
+
+    get_players_with_highest_score() {
+        /*
+        Determine the player (or players, if there is a tie) with the 
+        highest score and return the 'text' to display signifying a winner.
+        */
         let winner_text;
         let players_tied = [];
         let player_with_highest_score;
@@ -170,28 +172,33 @@ class DiceGame {
         }
 
         if (players_tied.length) {
-            winner_text = `${players_tied.length} way tie! Congratulations: {${players_tied}} with score ${highest_score}.`
+            winner_text = `${players_tied.length} way tie! Congratulations:
+                           {${players_tied}} with score ${highest_score}.`
         } else {
-            winner_text = `${player_with_highest_score} wins! With total score of: ${highest_score}.`;
+            winner_text = `${player_with_highest_score} wins!
+                           With total score of: ${highest_score}.`;
         }
-        $(`div#round`).text(winner_text);
-        this.game_over = true;
 
-        $(`div#myModal p`).text(winner_text);
+        return winner_text;
+    }
 
-        var modal = document.getElementById("myModal");
+    show_popup_box_declaring_winner(winning_text) {
+        /* Display a closeable popup announcing the winner of the game. */
+        $(`div#popup p`).text(winning_text);
+        var modal = document.getElementById("popup");
         var span = document.getElementsByClassName("close")[0];
+
         modal.style.display = "block";
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
           }
           
-          // When the user clicks anywhere outside of the modal, close it
-          window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.style.display = "none";
-            }
-          }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
     }
 }
