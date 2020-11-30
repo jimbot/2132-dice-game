@@ -1,23 +1,74 @@
 /* SASS styling with nested structure. */
-.rules {
-  background-color: #313131;
+/* Mixin */
+body {
+  font-family: 'Texturina', serif;
+  color: aliceblue;
+  animation-name: backgroundColorPalette;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+@keyframes backgroundColorPalette {
+  0% {
+    background: #6300BD;
+  }
+  16% {
+    background: #8001DD;
+  }
+  32% {
+    background: #A120F2;
+  }
+  48% {
+    background: #C100FE;
+  }
+  64% {
+    background: #DD00FD;
+  }
+  80% {
+    background: #FF4FDB;
+  }
+  100% {
+    background: #C100FE;
+  }
+}
+
+button {
+  background-color: #6300BD;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  margin: 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
   border-radius: 5px;
+}
+
+/* Styles the rules on the player select page */
+.rules {
+  margin: 30px auto;
+  background-color: #292929;
+  border-radius: 10px;
   padding-bottom: 25px;
   width: 50%;
-  margin: 30px auto;
 }
 
 .rules p {
   padding: 15px 0px 0px 25px;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
+/* Main container that all dices and player info goes in */
 .container {
   margin: 10% auto;
-  border: 3px solid #252525;
-  background-color: #252525;
+  border: 3px solid #212121;
+  background-color: #212121;
   box-shadow: 5px 8px #181818;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px;
   width: 1024px;
 }
@@ -31,10 +82,10 @@
 
 .container .field .column {
   flex: 0 50%;
-  background-color: #212121;
-  border: 15px solid #252525;
+  background-color: #292929;
+  border: 15px solid #212121;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 25px 10px 25px;
 }
 
@@ -46,4 +97,72 @@
 
 .dices div {
   flex: 0 50%;
+}
+
+/* Styles the popup box that declares winner. */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 30%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.popup_content {
+  background-color: #212121;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Style by ID */
+#player-name {
+  font-size: 2em;
+}
+
+#round {
+  padding: 20px;
+  text-align: center;
+  font-size: 2em;
+}
+
+/* Style by class */
+.controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.round {
+  color: #FF4FDB;
+  font-size: 2em;
+}
+
+.total {
+  color: #A120F2;
+  font-size: 2em;
 }
