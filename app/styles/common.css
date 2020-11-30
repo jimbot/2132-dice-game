@@ -1,0 +1,81 @@
+/* Common styles to elements, text and body. */
+
+body {
+    font-family: 'Texturina', serif;
+    background-color: #313131;
+    color: aliceblue;
+
+    animation-name: backgroundColorPalette;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear; 
+}
+
+@keyframes backgroundColorPalette {
+	0% {
+		background: #6300BD;
+	}
+	16% {
+		background: #8001DD;
+	}
+	32% {
+		background: #A120F2;
+	}
+	48% {
+		background: #C100FE;
+	}
+	64% {
+		background: #DD00FD;
+    }
+    80% {
+		background: #FF4FDB;
+    }
+    100% {
+		background: #C100FE;
+	}
+}
+
+button {
+    background-color: #6300BD; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+/* Style by ID */
+
+#player-name {
+    font-size: 1.5em;
+}
+
+#round {
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
+/* Style by class */
+
+.controls {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.round {
+    color: #FF4FDB;
+    font-size: 2em;
+}
+
+.total {
+    color: #A120F2;
+    font-size: 2em;
+}

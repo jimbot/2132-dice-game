@@ -1,0 +1,50 @@
+/* SASS styling with nested structure. */
+
+.rules {
+    background-color: #313131;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    width: 50%;
+    margin: 30px auto;
+
+    p {
+        padding: 15px 0px 0px 25px;
+        font-size: 1.5em;
+    }
+}
+
+.container {
+    margin: 10% auto;
+    border: 3px solid #252525;
+    background-color: #252525;
+    box-shadow: 5px 8px #181818;
+    border-radius: 8px;
+    padding: 10px;
+    width: 1024px;
+
+    .field {
+        display: none;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+    
+        .column{
+            flex: 0 50%;
+            background-color: #212121;
+            border: 15px solid #252525;
+            box-sizing:border-box;
+            border-radius: 8px;
+            padding: 10px 25px 10px 25px;
+        }
+    }
+}
+
+.dices {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    div {
+        flex: 0 50%;
+    }
+}

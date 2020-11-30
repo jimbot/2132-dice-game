@@ -35,7 +35,7 @@ class DiceGame {
     enable_playing_field() {
         /* Hide and show certain content to display proper playing field. */
         $("div.prompt").css("display", "none");
-        $("div.button").css("display", "flex");
+        $("div.controls").css("display", "flex");
         this.create_dynamic_playing_field();
     }
 
