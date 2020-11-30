@@ -47,10 +47,10 @@ class DiceGame {
     create_dynamic_playing_field() {
         /* Create the dice field dynamically. */
         const field = $('div.field');
-        field.css("display", "inline-block");
+        const container = $('div.container');
 
         // add the round to the top
-        field.append(`
+        container.append(`
             <div id="round">
                 <p>
                     Round: <span>${this.current_round}</span>
@@ -67,20 +67,30 @@ class DiceGame {
             const img_2 = `${name}_img_2`;
 
             field.append(`
-                <div class=${name}>
+                <div class="${name} column">
                     <p>${player} - ${name}</p>
-                    <div>
-                        <img class=${img_1} src="images/1_dot_dice.png">
-                        <p>Value: <span class=${dice_1}></span></p>
+
+                    <div class="dice_column">
+                    
+                        <div class="dices">
+                            <div>
+                                <img class=${img_1} src="images/1_dot_dice.png">
+                                <p>Value: <span class=${dice_1}></span></p>
+                            </div>
+
+                            <div>
+                                <img class=${img_2} src="images/1_dot_dice.png">
+                                <p>Value: <span class=${dice_2}></span></p>
+                            </div>
+                        </div>
+
+                        <div class="score">
+                            <p>Round: <span class="round"></span></p>
+                            <p>Total: <span class="total"></span></p>
+                        </div>
+
                     </div>
-                    <div>
-                        <img class=${img_2} src="images/1_dot_dice.png">
-                        <p>Value: <span class=${dice_2}></span></p>
-                    </div>
-                    <div class="score">
-                        <p>Round: <span class="round"></span></p>
-                        <p>Total: <span class="total"></span></p>
-                    </div>
+
                 </div>
             `);
         }

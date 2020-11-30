@@ -1,5 +1,7 @@
 body {
     font-family: 'Texturina', serif;
+    background-color: #313131;
+    color: aliceblue;
 }
 
 .field {
@@ -8,4 +10,42 @@ body {
 
 .button {
     display: none;
+}
+
+.container {
+    margin: auto;
+    width: 50%;
+    border: 3px solid #252525;
+    background-color: #252525;
+    box-shadow: 5px 8px #181818;
+    border-radius: 8px;
+    padding: 10px;
+    width: 1024px;
+}
+
+.field {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.field .column{
+    flex: 0 50%;
+    border: #212121 solid;
+    box-sizing:border-box;
+    padding: 10px 25px 10px 25px;
+}
+
+
+.dices {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dices>div {
+    flex: 0 50%;
+    border: #212121 solid;
+    box-sizing:border-box;
+    padding: 10px 25px 10px 25px;
 }
