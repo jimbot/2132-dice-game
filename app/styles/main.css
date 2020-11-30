@@ -31,11 +31,12 @@ body {
 
 .field .column{
     flex: 0 50%;
-    border: #212121 solid;
+    background-color: #212121;
+    border: 15px solid #252525;
     box-sizing:border-box;
+    border-radius: 8px;
     padding: 10px 25px 10px 25px;
 }
-
 
 .dices {
     margin: 0 auto;
@@ -45,7 +46,4 @@ body {
 
 .dices>div {
     flex: 0 50%;
-    border: #212121 solid;
-    box-sizing:border-box;
-    padding: 10px 25px 10px 25px;
 }
