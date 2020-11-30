@@ -4,8 +4,8 @@ $primary_color: #212121;
 $secondary_color: #292929;
 $border_radius: 10px;
 
-$default_font_size: 2em;
-$secondary_font_size: 1em;
+$large_font: 2em;
+$secondary_font: 1em;
 
 /* Mixin */
 @mixin set_margin($val) {
@@ -14,7 +14,7 @@ $secondary_font_size: 1em;
 
 @mixin set_color_and_font_size($color) {
     color: $color;
-    font-size: $default_font_size;
+    font-size: $large_font;
 }
 
 body {
@@ -60,7 +60,7 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: $secondary_font_size;
+    font-size: $secondary_font;
     border-radius: 5px;
 }
 
@@ -74,7 +74,7 @@ button {
 
     p {
         padding: 15px 0px 0px 25px;
-        font-size: $default_font_size;
+        font-size: $large_font;
     }
 }
 
@@ -144,7 +144,7 @@ button {
 .close {
     color: #aaaaaa;
     float: right;
-    font-size: $secondary_font_size;
+    font-size: $secondary_font;
     font-weight: bold;
 }
 
@@ -157,13 +157,13 @@ button {
 
 /* Style by ID */
 #player-name {
-    font-size: $default_font_size;
+    font-size: $large_font;
 }
 
 #round {
     padding: 20px;
     text-align: center;
-    font-size: $default_font_size;
+    font-size: $large_font;
 }
 
 /* Style by class */
