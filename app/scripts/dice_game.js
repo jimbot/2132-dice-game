@@ -41,7 +41,7 @@ class DiceGame {
 
     enable_playing_field() {
         $("div.prompt").css("display", "none");
-        $("div.button").css("display", "block");
+        $("div.button").css("display", "flex");
         this.create_dynamic_playing_field();
     }
 

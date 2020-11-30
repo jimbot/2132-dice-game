@@ -34,17 +34,45 @@ body {
 	}
 }
 
+.rules {
+    background-color: #313131;
+    border-radius: 5px;
+    padding-bottom: 25px;
+    width: 50%;
+    margin: 30px auto;
+}
+
+.rules p {
+    padding: 15px 0px 0px 25px;
+    font-size: 1.5em;
+}
+
+button {
+    background-color: #6300BD; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
 .field {
     display: none;
 }
 
 .button {
     display: none;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
 }
 
 .container {
     margin: 10% auto;
-    width: 50%;
     border: 3px solid #252525;
     background-color: #252525;
     box-shadow: 5px 8px #181818;
@@ -78,18 +106,24 @@ body {
     flex: 0 50%;
 }
 
-/* Test styling */
+/* Text styling */
 #player-name {
     font-size: 1.5em;
 }
 
+#round {
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
 .round {
-    color: #C100FE;
+    color: #FF4FDB;
     font-size: 2em;
 }
 
 .total {
-    color: #C100FE;
+    color: #A120F2;
     font-size: 2em;
 }
 
@@ -98,7 +132,7 @@ body {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 30%; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -115,6 +149,8 @@ body {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    text-align: center;
+    border-radius: 5px;
   }
   
   /* The Close Button */
@@ -127,7 +163,7 @@ body {
   
   .close:hover,
   .close:focus {
-    color: #000;
+    color: red;
     text-decoration: none;
     cursor: pointer;
   }
