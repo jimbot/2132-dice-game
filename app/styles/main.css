@@ -2,6 +2,36 @@ body {
     font-family: 'Texturina', serif;
     background-color: #313131;
     color: aliceblue;
+
+    animation-name: backgroundColorPalette;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear; 
+}
+
+@keyframes backgroundColorPalette {
+	0% {
+		background: #6300BD;
+	}
+	16% {
+		background: #8001DD;
+	}
+	32% {
+		background: #A120F2;
+	}
+	48% {
+		background: #C100FE;
+	}
+	64% {
+		background: #DD00FD;
+    }
+    80% {
+		background: #FF4FDB;
+    }
+    100% {
+		background: #C100FE;
+	}
 }
 
 .field {
@@ -13,7 +43,7 @@ body {
 }
 
 .container {
-    margin: auto;
+    margin: 10% auto;
     width: 50%;
     border: 3px solid #252525;
     background-color: #252525;
@@ -47,3 +77,57 @@ body {
 .dices>div {
     flex: 0 50%;
 }
+
+/* Test styling */
+#player-name {
+    font-size: 1.5em;
+}
+
+.round {
+    color: #C100FE;
+    font-size: 2em;
+}
+
+.total {
+    color: #C100FE;
+    font-size: 2em;
+}
+
+/* Popup box that declares winner */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #212121;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }

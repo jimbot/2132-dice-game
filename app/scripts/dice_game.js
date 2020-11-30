@@ -8,26 +8,27 @@ class DiceGame {
         this.dice = new Dice();
         this.game_over = false;
         this.current_round = 0;
+        this.players_array = [];
         this.number_players = number_players;
-        this.players_array = this.initialize_players(this.number_players);
+        this.initialize_players(this.number_players);
         this.initialize_players_dices();
         this.enable_playing_field();
     }
 
     initialize_players(num_players) {
-        var players_array = [];
         for(var i=0; i<num_players; i++){
             var name = this.get_random_name();
-            players_array.push(new Player(name)); 
+            this.players_array.push(new Player(name)); 
         }
-        return players_array;
     }
 
     get_random_name() {
         const names = ["Leonila", "Arlena", "Mao", "Julie", "Marci",
                        "Joycelyn", "Florence", "Deangelo", "Deandrea",
                        "Annita", "Holley", "Orville", "Joaquin", "Shaun",
-                       "Zoe", "Yvette", "Tammie", "Jame", "Brenna", "Alethea"]
+                       "Zoe", "Yvette", "Tammie", "Jim", "Brenna", "Alethea",
+                       "Jordan", "Forest", "Kevin", "James", "Brittney",
+                       "Larry", "Sarah", "Stacey", "Kelly"]
         const random_name = names[Math.floor(Math.random() * names.length)];
         return random_name;
     }
@@ -68,7 +69,8 @@ class DiceGame {
 
             field.append(`
                 <div class="${name} column">
-                    <p>${player} - ${name}</p>
+                    <p id="player-name">${name}</p>
+                    <p>${player}</p>
 
                     <div class="dice_column">
                     
@@ -174,5 +176,22 @@ class DiceGame {
         }
         $(`div#round`).text(winner_text);
         this.game_over = true;
+
+        $(`div#myModal p`).text(winner_text);
+
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+        modal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
     }
 }
